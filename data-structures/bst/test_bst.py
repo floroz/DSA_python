@@ -1,5 +1,4 @@
-from bst import BinarySearchTreeNode, BinarySearchTree
-
+from bst import BinarySearchTree
 
 def test_insert():
     bst = BinarySearchTree(5)
@@ -48,3 +47,20 @@ def test_delete():
     bst.delete(5)
     assert bst.find(5) is False
     assert bst.root is None
+    
+def test_delete_with_subtrees():
+    bst = BinarySearchTree(5)
+    bst.insert(3)
+    bst.insert(7)
+    bst.insert(2)
+    bst.insert(4)
+    bst.insert(6)
+    bst.insert(8)
+    bst.delete(3)
+    assert bst.find(3) is False
+    assert bst.root.left.value == 4
+    assert bst.root.left.left.value == 2
+    assert bst.root.left.right is None
+    assert bst.root.right.value == 7
+    assert bst.root.right.left.value == 6
+    assert bst.root.right.right.value == 8
