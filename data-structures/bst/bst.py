@@ -50,9 +50,9 @@ class BinarySearchTreeNode:
             elif self.left == None:
                 return self.right
             else:
-                min_node = self.right.min_value_node()
-                self.value = min_node.value
-                self.right = self.right.delete(min_node.value)
+                min_value = self.right.__min_value()
+                self.value = min_value
+                self.right = self.right.delete(min_value)
                 return self
 
         
@@ -64,10 +64,10 @@ class BinarySearchTreeNode:
                 self.right = self.right.delete(value)
         return self
     
-    def min_value_node(self):
+    def __min_value(self):
         if self.left is None:
-            return self
-        return self.left.min_value_node()
+            return self.value
+        return self.left.__min_value()
     
 class BinarySearchTree:
     def __init__(self, value: int):
