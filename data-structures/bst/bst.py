@@ -8,15 +8,13 @@ class BinarySearchTreeNode:
         self.right: Union[BinarySearchTreeNode, None] = None
     
     def insert(self, value: int) -> None:
-        if value == self.value:
-            return
         if value < self.value:
            if self.left is not None:
                self.left.insert(value)
            else:
                self.left = BinarySearchTreeNode(value)
         
-        else:
+        elif value > self.value:
             if self.right is not None:
                 self.right.insert(value)
             else:
@@ -64,7 +62,7 @@ class BinarySearchTreeNode:
                 self.right = self.right.delete(value)
         return self
     
-    def __min_value(self):
+    def __min_value(self) -> int:
         if self.left is None:
             return self.value
         return self.left.__min_value()
